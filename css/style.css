@@ -674,7 +674,28 @@ body.is-loaded .background2 {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    transition: transform var(--timing-slow) var(--easing-ease);
+    filter: brightness(1);
+    transition: transform var(--timing-slow) var(--easing-ease), filter var(--timing-slow) var(--easing-ease);
+}
+
+.archiveTitle {
+    position: absolute;
+    top: var(--spacing-md);
+    left: var(--spacing-md);
+    z-index: 2;
+    margin: 0;
+    margin-left: 30px;
+    font-family: 'Inter';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+    color: var(--color-text-primary);
+    opacity: 0;
+    transform: skewX(0deg) translateX(0) translateY(-4px);
+    transition: opacity var(--timing-base) var(--easing-ease), transform var(--timing-base) var(--easing-ease);
+    pointer-events: none;
 }
 
 .archivePan {
@@ -728,6 +749,13 @@ body.is-loaded .background2 {
 
 .archiveItem:hover .archiveImg {
     transform: skewX(-6deg) translateX(6px);
+    filter: brightness(0.72);
+}
+
+.archiveItem:hover .archiveTitle,
+.archiveItem:focus-within .archiveTitle {
+    opacity: 1;
+    transform: skewX(-6deg) translateX(6px) translateY(0);
 }
 
 .archivePan:hover .archivePanViewport {
@@ -1504,4 +1532,31 @@ body.is-modal-open {
     width: 100%;
     margin-top: 96px;
     margin-bottom: 96px;
+}
+
+
+
+/* CODE COMPASS */
+
+.devide {
+    display: flex;
+    margin-top: 96px;
+    gap: var(--spacing-2xl);;
+}
+
+.devide .left {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.devide .right {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.devide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
 }
