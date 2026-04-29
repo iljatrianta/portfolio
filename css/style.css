@@ -99,7 +99,7 @@ h1 {
     font-size: 128px;
     font-style: normal;
     font-weight: 900;
-    line-height: 128px;
+    line-height: 125px;
     letter-spacing: -5px;
     color: var(--color-text-secondary);
 }
@@ -812,11 +812,12 @@ body.is-loaded .background2 {
     pointer-events: auto;
 }
 
-.archiveModalImage {
-    max-width: min(1100px, calc(100vw - 64px));
-    max-height: calc(100vh - 64px);
-    width: auto;
-    height: auto;
+.archiveModalImage,
+.archiveModalVideo {
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     box-shadow: 0 14px 48px rgba(0, 0, 0, 0.45);
 }
@@ -829,6 +830,8 @@ body.is-loaded .background2 {
     position: relative;
     width: min(1100px, calc(100vw - 64px));
     height: min(100vh - 64px, 900px);
+    padding: 48px;
+    box-sizing: border-box;
 }
 
 .archiveModal.is-pan .archiveModalViewport {
@@ -961,13 +964,39 @@ body.is-modal-open {
 
 .projectHeroInfo p {
     width: auto;
+    min-width: 0;
+    margin-bottom: 0;
 }
 
 .projectHeroInfo {
-    display: flex;
-    gap: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    column-gap: 32px;
+    row-gap: 0px;
+    width: 512px;
     margin-top: 32px;
     z-index: 5;
+}
+
+.projectHeroInfo p:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.projectHeroInfo p:nth-child(2) {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.projectHeroInfo p:nth-child(3) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+}
+
+.projectHeroInfo p:nth-child(4) {
+    grid-column: 3;
+    grid-row: 1 / span 2;
 }
 
 /* project problem */
@@ -1496,6 +1525,8 @@ body.is-modal-open {
     height: auto;
     object-fit: cover;
     object-position: center;
+    border: 2px solid transparent;
+    box-sizing: border-box;
     transition: border 0.3s ease;
 }
 
