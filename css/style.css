@@ -970,7 +970,7 @@ body.is-modal-open {
 
 .projectHeroInfo {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto auto;
     column-gap: 32px;
     row-gap: 0px;
@@ -1047,7 +1047,7 @@ body.is-modal-open {
     pointer-events: none;
 }
 
-.UTD {
+.gogoVisualsProblem {
     margin-top: 70px;
 }
 
@@ -1099,7 +1099,13 @@ body.is-modal-open {
     padding-bottom: 128px;
 }
 
-.projectFieldResearch .content,
+.projectFieldResearch .content {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
 .projectFieldResearch .researchGrid {
     display: flex;
     gap: 32px;
@@ -1108,6 +1114,13 @@ body.is-modal-open {
 
 .projectFieldResearch p {
     margin-bottom: 16px;
+}
+
+.projectFieldResearch .content p {
+    flex: 0 0 auto;
+    width: 512px;
+    max-width: 100%;
+    margin-bottom: 0;
 }
 
 .projectFieldResearch .content .left,
@@ -1123,6 +1136,22 @@ body.is-modal-open {
     aspect-ratio: 16/10;
     object-fit: cover;
     object-position: center;
+}
+
+.projectFieldResearch .content img,
+.projectFieldResearch .content iframe {
+    flex: 0 0 auto;
+    width: 512px;
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+
+.projectFieldResearch .content iframe {
+    border: 0;
+    min-height: 352px;
 }
 
 /* project insights */
@@ -1366,7 +1395,7 @@ body.is-modal-open {
     width: 512px;
 }
 
-.ideaCardsUtd {
+.gogoVisualsIdeaCards {
     position: relative;
     display: block;
     width: fit-content;
@@ -1374,13 +1403,13 @@ body.is-modal-open {
     margin-left: auto;
 }
 
-.ideaCardsUtd .ideaCardUtd {
+.gogoVisualsIdeaCards .gogoVisualsIdeaCard {
     display: block;
     max-width: 100%;
     height: auto;
 }
 
-.ideaCardsUtd::after {
+.gogoVisualsIdeaCards::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -1487,9 +1516,15 @@ body.is-modal-open {
     box-sizing: border-box;
     border: 4px solid transparent;
     margin: 64px auto 128px auto;
+    transform: scale(1);
+    transform-origin: center center;
+    filter: brightness(1);
+    transition: transform 180ms ease, filter 180ms ease;
 }
 
 .projectFinalVideo.is-paused {
+    transform: scale(0.975);
+    filter: brightness(0.70);
     border-color: #ffffff;
 }
 
@@ -1590,4 +1625,17 @@ body.is-modal-open {
     height: auto;
     object-fit: cover;
     object-position: center;
+}
+
+.patternGV {
+    width: 100%;
+}
+
+.patternGV img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    margin-top: 96px;
+    margin-bottom: 96px;
 }

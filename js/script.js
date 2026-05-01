@@ -562,8 +562,10 @@ const initProjectFinalVideo = () => {
 	const finalVideo = document.querySelector('.projectFinalVideo');
 	if (!finalVideo) return;
 
+	let hasPlayed = false;
+
 	const syncPausedState = () => {
-		finalVideo.classList.toggle('is-paused', finalVideo.paused);
+		finalVideo.classList.toggle('is-paused', hasPlayed && finalVideo.paused);
 	};
 
 	finalVideo.controls = false;
@@ -572,7 +574,10 @@ const initProjectFinalVideo = () => {
 	finalVideo.setAttribute('playsinline', '');
 	syncPausedState();
 
-	finalVideo.addEventListener('play', syncPausedState);
+	finalVideo.addEventListener('play', () => {
+		hasPlayed = true;
+		syncPausedState();
+	});
 	finalVideo.addEventListener('pause', syncPausedState);
 
 	finalVideo.addEventListener('click', () => {
