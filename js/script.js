@@ -358,6 +358,8 @@ const initArchiveModal = () => {
 		archiveModalImage.hidden = false;
 		archiveModalVideo.hidden = true;
 		archiveModalVideo.pause();
+		archiveModalVideo.muted = true;
+		archiveModalVideo.volume = 0;
 		archiveModalVideo.removeAttribute('src');
 		archiveModalVideo.load();
 	};
@@ -378,6 +380,8 @@ const initArchiveModal = () => {
 		archiveModalImage.alt = '';
 		archiveModalImage.hidden = true;
 		archiveModalVideo.hidden = false;
+		archiveModalVideo.muted = false;
+		archiveModalVideo.volume = 1;
 
 		const sourceElement = video.querySelector('source');
 		const source = sourceElement?.currentSrc || sourceElement?.src || video.currentSrc || video.src;
@@ -447,6 +451,8 @@ const initArchiveModal = () => {
 		document.body.classList.remove('is-modal-open');
 		archiveModalImage.src = '';
 		archiveModalVideo.pause();
+		archiveModalVideo.muted = true;
+		archiveModalVideo.volume = 0;
 		archiveModalImage.hidden = false;
 		archiveModalVideo.hidden = true;
 	};
