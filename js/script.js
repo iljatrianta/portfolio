@@ -381,7 +381,7 @@ const initArchiveModal = () => {
 		archiveModalImage.hidden = true;
 		archiveModalVideo.hidden = false;
 		archiveModalVideo.muted = false;
-		archiveModalVideo.volume = 1;
+		archiveModalVideo.volume = 0.5;
 
 		const sourceElement = video.querySelector('source');
 		const source = sourceElement?.currentSrc || sourceElement?.src || video.currentSrc || video.src;
@@ -437,6 +437,14 @@ const initArchiveModal = () => {
 		archiveModal.classList.toggle('is-pan', shouldPan);
 		archiveModal.setAttribute('aria-hidden', 'false');
 		document.body.classList.add('is-modal-open');
+
+		// If a video was opened, some browsers block play when the element isn't yet visible.
+		// Retry play after making the modal visible.
+		if (!archiveModalVideo.hidden && archiveModalVideo.src) {
+			const tryPlay = () => archiveModalVideo.play().catch(() => {});
+			tryPlay();
+			setTimeout(tryPlay, 200);
+		}
 	};
 
 	/**
@@ -682,6 +690,9 @@ const initProjectFinalVideo = () => {
 		video.loop = true;
 		video.playsInline = true;
 		video.setAttribute('playsinline', '');
+
+		// Lower site-wide playback volume by 50%
+		try { video.volume = 0.5; } catch (e) {}
 
 		// Initialize paused visual state
 		updatePausedState(video);
