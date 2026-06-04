@@ -110,7 +110,9 @@ const applyResponsiveZoom = () => {
 	const height = window.innerHeight;
 	let scale = 1;
 
-	if (width > largeWidth && height > largeHeight) {
+	if (width <= 900) {
+		scale = 1;
+	} else if (width > largeWidth && height > largeHeight) {
 		scale = Math.min(width / largeWidth, height / largeHeight);
 	} else if (width < smallWidth || height < smallHeight) {
 		scale = Math.min(width / smallWidth, height / smallHeight);
